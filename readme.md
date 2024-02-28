@@ -28,4 +28,5 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
 - Visualizzo un messaggio in console con il numero della cella cliccata
 -- BONUS
 - Genero un secondo Elemento accanto al bottone
-- 
+- Assegno al select tre valori difersi 1-2-3
+- Assegno a una variabile il valore selezionato in select

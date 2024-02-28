@@ -16,11 +16,24 @@ main.append(button);
 //BONUS 1 - Genero un secondo Elemento accanto al bottone
 main.append(select);
 //BONUS 1 - Aggiungo le opzioni nel select
-select.innerHTML= `  <option value="1">Difficoltà 1</option>
+select.innerHTML= `  <option value="1" class="my_select">Difficoltà 1</option>
 <option value="2">Difficoltà 2</option>
 <option value="3">Difficoltà 3</option>`;
 button.innerHTML= `CLICCA QUI PER GENERARE LA GRIGLIA`;
 main.append(button);
+
+// Assegno a una variabile il valore in selecet
+const myChoice = (document.getElementsByClassName('my_select'));
+console.log(myChoice);
+function myChoice(params) {
+        
+}
+
+
+
+
+
+
 
 //Il codice parte al click
 button.addEventListener('click', function (e) {
@@ -29,8 +42,9 @@ button.addEventListener('click', function (e) {
     //Assegno agli elementi delle classi di Bootstrap  
     container.classList.add('container');
     row.classList.add('row');
-    
-    
+
+
+
     //Creo un ciclo che mi permette di creare 100 elementi
     for (let i = 0; i < 100; i++) {
         // Creo una variabile che si incrementa assieme all'indice
