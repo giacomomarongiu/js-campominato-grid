@@ -26,3 +26,4 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
 - Nello stesso ciclo faccio si' che all'interno degli elementi venga visualizzato sul Dom un numero progressivo da 1 a 100
 - Quando una cella viene cliccata le assegno una classe che permette di colorla
 - Visualizzo un messaggio in console con il numero della cella cliccata
+-- BONUS
