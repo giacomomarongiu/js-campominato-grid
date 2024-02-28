@@ -19,8 +19,10 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
 
 ## Steps
 - Creo una variabile a cui associo la possibilità di creare un bottone nel DOM (Anche più di uno)
-- Uso append per agganciare questo(i) elemento(i) al body  
-- Creo un ciclo che mi permette di creare 100 elementi
+- Uso append per agganciare questo(i) elemento(i) alla DOM
+- Assegno agli elementi delle classi di Bootstrap  
+- Creo un ciclo che si ripete per 100 volte
+- Creo un elemento che appendo alla mia row e gli assegno una classe col
 - Nello stesso ciclo faccio si' che all'interno degli elementi venga visualizzato sul Dom un numero progressivo da 1 a 100
 - Quando una cella viene cliccata le assegno una classe che permette di colorla
 - Visualizzo un messaggio in console con il numero della cella cliccata
