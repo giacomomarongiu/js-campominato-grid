@@ -15,21 +15,23 @@ document.body.append(main);
 main.append(button);
 //BONUS 1 - Genero un secondo Elemento accanto al bottone
 main.append(select);
+select.classList.add('my_select')
 //BONUS 1 - Aggiungo le opzioni nel select
-select.innerHTML= `  <option value="1" class="my_select">Difficoltà 1</option>
+select.innerHTML = `  <option value="1">Difficoltà 1</option>
 <option value="2">Difficoltà 2</option>
 <option value="3">Difficoltà 3</option>`;
-button.innerHTML= `CLICCA QUI PER GENERARE LA GRIGLIA`;
+button.innerHTML = `CLICCA QUI PER GENERARE LA GRIGLIA`;
 main.append(button);
 
-// Assegno a una variabile il valore in selecet
-const myChoice = (document.getElementsByClassName('my_select'));
-console.log(myChoice);
 
+let valueElement = select.addEventListener('click', function (e) {
+    const selecetedElement = document.querySelector('.my_select')
+    console.log(selecetedElement);
+    console.log(selecetedElement.value);
+    return selecetedElement.value;
+})
 
-
-
-
+console.log(valueElement);
 
 
 
@@ -40,8 +42,6 @@ button.addEventListener('click', function (e) {
     //Assegno agli elementi delle classi di Bootstrap  
     container.classList.add('container');
     row.classList.add('row');
-
-
 
     //Creo un ciclo che mi permette di creare 100 elementi
     for (let i = 0; i < 100; i++) {
@@ -60,7 +60,7 @@ button.addEventListener('click', function (e) {
         // Verifico se l'incremento è corretto
         //onsole.log(my_counter); //OK
     }
-    
+
     //Mi serve avere le mie box create in un contenitore
     // Utilizzo un array
     let colsElements = document.getElementsByClassName('col')
@@ -70,7 +70,7 @@ button.addEventListener('click', function (e) {
     for (let i = 0; i < colsElements.length; i++) {
         //Variabile a cui assegno a turno gli elementi del mio array
         const colElement = colsElements[i];
-    
+
         colElement.addEventListener('click', function () {
             //Quando una cella viene cliccata le assegno una classe che permette di colorarla
             colElement.classList.toggle('blue')
@@ -79,5 +79,5 @@ button.addEventListener('click', function (e) {
         }
         )
     }
-    
+
 })
