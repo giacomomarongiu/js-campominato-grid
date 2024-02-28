@@ -13,12 +13,10 @@
 }
 
 .col {
-    min-width: 60px;
-    min-height: 60px;
-    border: 1px solid blue;
+    width: 10%;
+    aspect-ratio: 1/1;
     text-align: center;
     background: red;
-
 }
 
 .blue {
@@ -34,4 +32,10 @@ body {
 button {
     margin-bottom: 30px;
     width: 100%;
+}
+
+select{
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
 }

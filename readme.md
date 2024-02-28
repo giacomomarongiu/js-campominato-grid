@@ -27,3 +27,5 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
 - Quando una cella viene cliccata le assegno una classe che permette di colorla
 - Visualizzo un messaggio in console con il numero della cella cliccata
 -- BONUS
+- Genero un secondo Elemento accanto al bottone
+- 

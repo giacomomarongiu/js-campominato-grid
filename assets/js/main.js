@@ -3,6 +3,7 @@ console.log("Hello World");
 // Creo una variabile a cui associo la possibilità
 // di creare un bottone nel DOM (Anche più di uno)
 const button = document.createElement('button')
+const select = document.createElement('select')
 const main = document.createElement('main');
 const container = document.createElement('div');
 const row = document.createElement('div');
@@ -12,8 +13,17 @@ const row = document.createElement('div');
 // Uso append per agganciare questo(i) elemento(i) alla DOM
 document.body.append(main);
 main.append(button);
+//BONUS 1 - Genero un secondo Elemento accanto al bottone
+main.append(select);
+//BONUS 1 - Aggiungo le opzioni nel select
+select.innerHTML= `  <option value="1">Difficoltà 1</option>
+<option value="2">Difficoltà 2</option>
+<option value="3">Difficoltà 3</option>`;
 button.innerHTML= `CLICCA QUI PER GENERARE LA GRIGLIA`;
-button.addEventListener('click', function () {
+main.append(button);
+
+//Il codice parte al click
+button.addEventListener('click', function (e) {
     main.append(container);
     container.append(row);
     //Assegno agli elementi delle classi di Bootstrap  
