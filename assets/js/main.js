@@ -25,9 +25,7 @@ main.append(button);
 // Assegno a una variabile il valore in selecet
 const myChoice = (document.getElementsByClassName('my_select'));
 console.log(myChoice);
-function myChoice(params) {
-        
-}
+
 
 
 
