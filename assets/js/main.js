@@ -26,6 +26,8 @@ select.innerHTML =
 button.innerHTML = `CLICCA QUI PER GENERARE LA GRIGLIA`;
 main.append(button);
 
+
+
 //BONUS A CUI STAVO LAVORANDO IERI - LASCIO IN SOSPESO
 /*let valueElement = select.addEventListener('click', function (e) {
     const selecetedElement = document.querySelector('.my_select')
@@ -36,16 +38,17 @@ main.append(button);
 
 console.log(valueElement);*/
 
-//DAY 2 Creo un array che contiene 16 numeri generati casualmente
-let listPoops = createPoops() ;
 
+
+
+//Functions
 
 /** Questa funzione quando chiamata restituisce un array numerico di 16 numeri casuali
  * 
  * @returns {Array}
  */
 function createPoops() {
-    let myPoops=[];
+    let myPoops = [];
     for (let i = 0; i < 16; i++) {
         // Creo un nuvo numero
         const newPoop = Math.floor(Math.random() * 100) + 1;
@@ -56,16 +59,14 @@ function createPoops() {
             // SE E' presente decremento l'inidice 
         } else { i-- }
     };
-return myPoops;
+    return myPoops;
 }
 
 
-//Verifico che il mio array cotenga 16 numeri casuali diversi
-console.log(listPoops);//ok
-
-
-//Il codice parte al click
-button.addEventListener('click', function () {
+/** Questa funzione mi permette di creare una griglia sul DOM a ogni click
+ * 
+ */
+function createGrill() {
     //Aggiungo elementi al DOM
     main.append(container);
     container.append(row);
@@ -78,9 +79,6 @@ button.addEventListener('click', function () {
     //(Ovviamente al primo click sarà già vuota)
     row.innerHTML = "";
 
-    //Dichiaro una variabile a cui per ora assegno il valore 100
-    //ma dopo vorrei avesse il valore value del select 
-    let elementValue = 100;
 
     //Creo un ciclo che mi permette di creare  elementi
     for (let i = 0; i < elementValue; i++) {
@@ -105,10 +103,14 @@ button.addEventListener('click', function () {
         // Verifico se l'incremento è corretto
         //onsole.log(my_counter); //OK
     }
+}
 
-    //DAY 2 Creo un array che contenga i 100 numeri
 
-
+/** Questa funzione mi permette di cambiare colore delle celle al click a seconda che questi siano
+ * con o privi di poop
+ * 
+ */
+function verifiedPoops() {
     //Mi serve avere le mie box create in un contenitore
     // Utilizzo un array
     let colsElements = document.getElementsByClassName('col')
@@ -131,24 +133,42 @@ button.addEventListener('click', function () {
             /* Quando clicco su una cella:
              SE il numero della cella è presente tra i numeri generati casualmente nell'array STOPPO IL GIOCO
              SE NO la coloro di azzurro e continuo il gioco*/
-            if (!myPoops.includes(i + 1)) {
+            if (!listPoops.includes(i + 1)) {
                 //Quando una cella viene cliccata le assegno una classe che permette di colorarla
                 colElement.classList.toggle('blue')
                 //Visualizzo un messaggio in console con il numero della cella cliccata
                 console.log(i + 1);
-                missedPoop ++;
-                console.log("Te la sei scampata per",missedPoop, "volte");
+                missedPoop++;
+                console.log("Te la sei scampata per", missedPoop, "volte");
             } else {
                 colElement.classList.add('poop')
                 console.log("Hai perso");
             }
-
-
         }
         )
     }
 
-})
+}
 
+
+
+//MAIN CODE
+
+//DAY 2 Creo un array che contiene 16 numeri generati casualmente
+let listPoops = createPoops();
+
+//Verifico che il mio array cotenga 16 numeri casuali diversi
+console.log(listPoops);//ok
+
+//Dichiaro una variabile a cui per ora assegno il valore 100
+//ma dopo vorrei avesse il valore value del select 
+let elementValue = 100;
+
+
+//Il codice parte al click
+button.addEventListener('click', function (e) {
+    createGrill();
+    verifiedPoops();
+})
 
 
