@@ -209,6 +209,8 @@ let missedPoop = 0;
 
 //Il codice parte al click
 document.querySelector('form').addEventListener('submit', function (e) {
+    //Resetto il contatore nel caso venga creata un'altra griglia  
+    missedPoop =0;
     e.preventDefault();
     elementValue = e.target.level.value;
     //DAY 2 Creo un array che contiene 16 numeri generati casualmente
