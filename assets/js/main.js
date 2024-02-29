@@ -132,13 +132,15 @@ function verifiedPoops(index) {
         colElement.classList.add('poop')
         colElement.innerHTML = ``;
         colElement.innerHTML = `&#x1F4A9`
-        console.log("Hai perso");
-        //Non rendo più cliccabile la box
-        colElement.addEventListener('click', function (e) {
-            e.stopPropagation();
-        }, true);
+        console.log("Hai perso totalizzando", missedPoop);
+        //Scorro l'intero array e non rendo più cliccabile nessuna box
         for (let y = 0; y < colsElements.length; y++) {
+            //console.log(colsElements);
             let colElement = colsElements[y];
+            colElement.addEventListener('click', function (e) {
+                e.stopPropagation();
+            }, true);
+
         }
         //main.classList.add('youloose');
         //main.innerHTML=`<h1>YOU LOOSE</h1>`
