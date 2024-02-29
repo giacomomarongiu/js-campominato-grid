@@ -43,6 +43,7 @@ button.addEventListener('click', function (e) {
     container.classList.add('container');
     row.classList.add('row');
 
+    row.innerHTML="";
     //Creo un ciclo che mi permette di creare 100 elementi
     for (let i = 0; i < 100; i++) {
         // Creo una variabile che si incrementa assieme all'indice
