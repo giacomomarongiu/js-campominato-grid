@@ -5,6 +5,11 @@
     color: rgb(255, 200, 196);
 }
 
+main {
+    position: relative;
+    width: fit-content;
+}
+
 .row {
     margin: auto;
     max-width: 650px;
@@ -23,7 +28,7 @@
     background-color: blue;
 }
 
-.poop{
+.poop {
     background-color: red;
 }
 
@@ -38,8 +43,20 @@ button {
     width: 100%;
 }
 
-select{
+select {
     margin-bottom: 30px;
     width: 100%;
     text-align: center;
+}
+
+.youloose {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+    background-color: none;
+    text-align: center;
+
 }

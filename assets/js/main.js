@@ -42,7 +42,6 @@ console.log(valueElement);*/
 
 
 //Functions
-
 /** Questa funzione quando chiamata restituisce un array numerico di 16 numeri casuali
  * 
  * @returns {Array}
@@ -104,11 +103,52 @@ function createGrill() {
     }
 }
 
-/** Questa funzione mi permette di cambiare colore delle celle al click a seconda che questi siano
- * con o privi di poop
+
+function verifiedPoops(index) {
+    let canYouPlay = true;
+    let i = index;
+    let colsElements = document.getElementsByClassName('col')
+    const colElement = colsElements[i];
+    const containerElement = document.getElementsByClassName('container')
+    //DAY 2 
+    /* Quando clicco su una cella:
+     SE il numero della cella è presente tra i numeri generati casualmente nell'array STOPPO IL GIOCO
+     SE NO la coloro di azzurro e continuo il gioco*/
+    if (!listPoops.includes(i + 1)) {
+        //Quando una cella viene cliccata le assegno una classe che permette di colorarla
+        colElement.classList.toggle('blue')
+        //Visualizzo un messaggio in console con il numero della cella cliccata
+        console.log("Hai cliccato sul", i + 1);
+        //Incremento le cacche mancate
+        missedPoop++;
+        console.log("Niente cacche per ", missedPoop);
+        //Non rendo più cliccabile la box
+
+        colElement.addEventListener('click', function (e) {
+            e.stopPropagation();
+        }, true);
+    } else {
+        //Pulisco il contenuto e aggiungo una cacca
+        colElement.classList.add('poop')
+        colElement.innerHTML = ``;
+        colElement.innerHTML = `&#x1F4A9`
+        console.log("Hai perso");
+        //Non rendo più cliccabile la box
+        colElement.addEventListener('click', function (e) {
+            e.stopPropagation();
+        }, true);
+        for (let y = 0; y < colsElements.length; y++) {
+            let colElement = colsElements[y];
+        }
+        //main.classList.add('youloose');
+        //main.innerHTML=`<h1>YOU LOOSE</h1>`
+    }
+}
+
+/** Questa funzione mi permette di scorrere le mie celle fino a che non trovo quella cliccata
  * 
  */
-function verifiedPoops() {
+function scrollPoops() {
     //Mi serve avere le mie box create in un contenitore
     // Utilizzo un array
     let colsElements = document.getElementsByClassName('col')
@@ -118,7 +158,6 @@ function verifiedPoops() {
 
     //DAY 2
     //Mi serve un contatore che si incrementa quando non clicco sulla cacca
-    let missedPoop = 0;
 
     //Utilizzo addEventListener e toggle in un ciclo for
     for (let i = 0; i < colsElements.length; i++) {
@@ -126,33 +165,11 @@ function verifiedPoops() {
         const colElement = colsElements[i];
         //console.log(colElement);
         colElement.addEventListener('click', function () {
-            //DAY 2 
-            /* Quando clicco su una cella:
-             SE il numero della cella è presente tra i numeri generati casualmente nell'array STOPPO IL GIOCO
-             SE NO la coloro di azzurro e continuo il gioco*/
-            if (!listPoops.includes(i + 1)) {
-                //Quando una cella viene cliccata le assegno una classe che permette di colorarla
-                colElement.classList.toggle('blue')
-                //Visualizzo un messaggio in console con il numero della cella cliccata
-                console.log(i + 1);
-                //Incremento le cacche mancate
-                missedPoop++;
-                return true;
-            } else {
-                //Pulisco il contenuto e aggiungo una cacca
-                colElement.classList.add('poop')
-                colElement.innerHTML = ``;
-                colElement.innerHTML = `&#x1F4A9`
-                console.log("Hai perso");
-                return false;
-            }
-        }
-        )
+            verifiedPoops(i);
+        })
+        //colElement.removeEventListener('click', verifiedPoops(i))
     }
-
 }
-
-
 
 
 
@@ -164,18 +181,23 @@ let listPoops = createPoops();
 //Verifico che il mio array cotenga 16 numeri casuali diversi
 console.log(listPoops);//ok
 
-
 //Dichiaro una variabile a cui per ora assegno il valore 100
 //ma dopo vorrei avesse il valore value del select 
 let elementValue = 100;
 
-let canYouPlay;
+let missedPoop = 0;
+let letsClick;
 
 //Il codice parte al click
 button.addEventListener('click', function () {
 
     createGrill();
-
-    verifiedPoops();
+    scrollPoops();
 
 })
+
+
+/*button.removeEventListener('click','funzioneTest')
+function funzioneTest(){
+    console.log('ciao bello');
+}*/
