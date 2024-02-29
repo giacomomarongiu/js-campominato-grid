@@ -16,7 +16,7 @@
     width: 10%;
     aspect-ratio: 1/1;
     text-align: center;
-    background: red;
+    background: green;
 }
 
 .blue {
@@ -24,7 +24,7 @@
 }
 
 .poop{
-    background-color: brown;
+    background-color: red;
 }
 
 body {

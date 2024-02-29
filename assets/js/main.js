@@ -62,7 +62,6 @@ function createPoops() {
     return myPoops;
 }
 
-
 /** Questa funzione mi permette di creare una griglia sul DOM a ogni click
  * 
  */
@@ -105,7 +104,6 @@ function createGrill() {
     }
 }
 
-
 /** Questa funzione mi permette di cambiare colore delle celle al click a seconda che questi siano
  * con o privi di poop
  * 
@@ -116,12 +114,11 @@ function verifiedPoops() {
     let colsElements = document.getElementsByClassName('col')
 
     // Verifico di aver preso gli elementi corretti
-    //console.log(colsElements); //ok
+    // console.log(colsElements); //ok
 
     //DAY 2
     //Mi serve un contatore che si incrementa quando non clicco sulla cacca
     let missedPoop = 0;
-
 
     //Utilizzo addEventListener e toggle in un ciclo for
     for (let i = 0; i < colsElements.length; i++) {
@@ -138,11 +135,16 @@ function verifiedPoops() {
                 colElement.classList.toggle('blue')
                 //Visualizzo un messaggio in console con il numero della cella cliccata
                 console.log(i + 1);
+                //Incremento le cacche mancate
                 missedPoop++;
-                console.log("Te la sei scampata per", missedPoop, "volte");
+                return true;
             } else {
+                //Pulisco il contenuto e aggiungo una cacca
                 colElement.classList.add('poop')
+                colElement.innerHTML = ``;
+                colElement.innerHTML = `&#x1F4A9`
                 console.log("Hai perso");
+                return false;
             }
         }
         )
@@ -152,23 +154,28 @@ function verifiedPoops() {
 
 
 
+
+
+
 //MAIN CODE
 
 //DAY 2 Creo un array che contiene 16 numeri generati casualmente
 let listPoops = createPoops();
-
 //Verifico che il mio array cotenga 16 numeri casuali diversi
 console.log(listPoops);//ok
+
 
 //Dichiaro una variabile a cui per ora assegno il valore 100
 //ma dopo vorrei avesse il valore value del select 
 let elementValue = 100;
 
+let canYouPlay;
 
 //Il codice parte al click
-button.addEventListener('click', function (e) {
+button.addEventListener('click', function () {
+
     createGrill();
+
     verifiedPoops();
+
 })
-
-
