@@ -37,18 +37,20 @@ form.append(button);
 
 //FUNCTIONS
 /** Questa funzione quando chiamata restituisce un array numerico di 16 numeri casuali
- * 
+ * tra il numero massimo di celle generate
+ * @param {number} number
  * @returns {Array}
  */
-function createPoops() {
+function createPoops(number) {
+    let poopRange = number;
     let myPoops = [];
     for (let i = 0; i < 16; i++) {
         // Creo un nuvo numero
-        const newPoop = Math.floor(Math.random() * 100) + 1;
+        const newPoop = Math.floor(Math.random() * poopRange) + 1;
         // Verifico che nell'array non ci siano due numeri uguali
         // SE NON è incluso lo aggiungo
         if (!myPoops.includes(newPoop)) {
-            myPoops.push(Math.floor(Math.random() * 100) + 1);
+            myPoops.push(Math.floor(Math.random() * poopRange) + 1);
             // SE E' presente decremento l'inidice 
         } else { i-- }
     };
@@ -110,18 +112,18 @@ function createGrill(number) {
 /**
  * Questa funzione mi permette di verificare se la cella cliccata è associata a un numero
  * della mia lista e in caso colorarla e non renderla più cliccabile
- * @param {*} index 
+ * @param {number} index
+ * @param {Array} list 
  */
-function verifiedPoops(index) {
-    let canYouPlay = true;
+function verifiedPoops(index, list) {
+    let listPoops= list;
     let i = index;
     let colsElements = document.getElementsByClassName('col')
     const colElement = colsElements[i];
-    const containerElement = document.getElementsByClassName('container')
-    //DAY 2 
     /* Quando clicco su una cella:
-     SE il numero della cella è presente tra i numeri generati casualmente nell'array STOPPO IL GIOCO
-     SE NO la coloro di azzurro e continuo il gioco*/
+     SE il numero della cella NON è presente tra i numeri generati casualmente nell'array:
+     -> Lo coloro -> Visualizzo quale ho cliccato in console -> Aumento l'indice di ->
+     -> Visualizzo l'indice -> Rendo l'elemento non più cliccabile.*/
     if (!listPoops.includes(i + 1)) {
         //Quando una cella viene cliccata le assegno una classe che permette di colorarla
         colElement.classList.toggle('blue')
@@ -136,7 +138,9 @@ function verifiedPoops(index) {
             e.stopPropagation();
         }, true);
     } else {
-        //Pulisco il contenuto e aggiungo una cacca
+        //SE è PRESENTE: 
+        //Pulisco il contenuto e aggiungo una cacca -> Visualizzo il punteggio
+        // -> Prendo tutti gli elementi e li rendo non cliccabili
         colElement.classList.add('poop')
         colElement.innerHTML = ``;
         colElement.innerHTML = `&#x1F4A9`
@@ -156,9 +160,11 @@ function verifiedPoops(index) {
 }
 
 /** Questa funzione mi permette di scorrere le mie celle fino a che non trovo quella cliccata
- * 
+ * la lista serve perché sarà quella da passara durante la verifica nella funzione successiva
+ * @param {Array} list 
  */
-function scrollPoops() {
+function scrollPoops(list) {
+    let listPoops= list;
     //Mi serve avere le mie box create in un contenitore
     // Utilizzo un array
     let colsElements = document.getElementsByClassName(['col'])
@@ -175,7 +181,7 @@ function scrollPoops() {
         const colElement = colsElements[i];
         //console.log(colElement);
         colElement.addEventListener('click', function () {
-            verifiedPoops(i);
+            verifiedPoops(i,listPoops);
         })
         //colElement.removeEventListener('click', verifiedPoops(i))
     }
@@ -187,10 +193,7 @@ function scrollPoops() {
 
 //MAIN CODE
 
-//DAY 2 Creo un array che contiene 16 numeri generati casualmente
-let listPoops = createPoops();
-//Verifico che il mio array cotenga 16 numeri casuali diversi
-console.log("Questi sono i numeri se vuoi pestare cacca", listPoops);//ok
+
 
 //Dichiaro una variabile a cui per ora assegno il valore 100
 //ma dopo vorrei avesse il valore value del select 
@@ -208,9 +211,13 @@ let missedPoop = 0;
 document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
     elementValue = e.target.level.value;
-    console.log(elementValue);
+    //DAY 2 Creo un array che contiene 16 numeri generati casualmente
+    let listPoops = createPoops(elementValue);
+    //Verifico che il mio array cotenga 16 numeri casuali diversi
+    console.log("Questi sono i numeri se vuoi pestare cacca", listPoops);//ok
+
     createGrill(elementValue);
-    scrollPoops();
+    scrollPoops(listPoops);
 
 })
 

@@ -5,11 +5,6 @@
     color: rgb(255, 200, 196);
 }
 
-main {
-    position: relative;
-    width: fit-content;
-}
-
 .row {
     margin: auto;
     max-width: 650px;
