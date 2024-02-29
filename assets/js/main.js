@@ -3,8 +3,8 @@ console.log("Hello World");
 //SEZIONE DEDICATA A CREARE ELEMENTI NELLA DOM
 // Creo una variabile a cui associo la possibilità
 // di creare un bottone e gli altri elementi nel DOM (Anche più di uno)
-const button = document.createElement('button')
-const select = document.createElement('select')
+const button = document.createElement('button');
+const select = document.createElement('select');
 const main = document.createElement('main');
 const container = document.createElement('div');
 const row = document.createElement('div');
@@ -12,9 +12,11 @@ const row = document.createElement('div');
 // Uso append per agganciare questo(i) elemento(i) alla DOM
 document.body.append(main);
 main.append(button);
+
 //BONUS 1 - Genero un secondo Elemento accanto al bottone
 main.append(select);
-select.classList.add('my_select')
+select.classList.add('my_select');
+
 //BONUS 1 - Aggiungo le opzioni nel select
 select.innerHTML =
     `<option value="100">Easy</option>
@@ -42,16 +44,14 @@ for (let i = 0; i < 16; i++) {
     // Verifico che nell'array non ci siano due numeri uguali
     // SE NON è incluso lo aggiungo
     if (!myPoops.includes(newPoop)) {
-        myPoops.push(Math.floor(Math.random() * 100) + 1)
+        myPoops.push(Math.floor(Math.random() * 100) + 1);
         // SE E' presente decremento l'inidice 
     } else { i-- }
-}
+};
 
 //Verifico che il mio array cotenga 16 numeri casuali diversi
 console.log(myPoops);//ok
 
-
-let numbersElement = [];
 
 //Il codice parte al click
 button.addEventListener('click', function () {
@@ -76,24 +76,23 @@ button.addEventListener('click', function () {
 
         // Creo una variabile che si incrementa assieme all'indice
         //(Parte da 1 anziché da zero perché dovrò visualizzarla nella card)
-
         const my_counter = i + 1;
+
         //Creo un elemento div
-
         const col = document.createElement('div');
+
         // Appendo il primo a row
-
         row.append(col);
-        // Assegno la classe col all'elemento del DOM
 
-        col.classList.add('col')
+        // Assegno la classe col all'elemento del DOM
+        col.classList.add('col');
+
         //Nello stesso ciclo faccio si' che all'interno degli elementi venga
         // visualizzato sul Dom un numero progressivo da 1 a 100
+        col.innerHTML = `${my_counter}`;
 
-        col.innerHTML = `${my_counter}`
         // Verifico se l'incremento è corretto
         //onsole.log(my_counter); //OK
-        numbersElement.push(my_counter)
     }
 
     //DAY 2 Creo un array che contenga i 100 numeri
