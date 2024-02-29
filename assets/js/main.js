@@ -44,12 +44,14 @@ for (let i = 0; i < 16; i++) {
     if (!myPoops.includes(newPoop)) {
         myPoops.push(Math.floor(Math.random() * 100) + 1)
         // SE E' presente decremento l'inidice 
-    } else {i--}
+    } else { i-- }
 }
 
 //Verifico che il mio array cotenga 16 numeri casuali diversi
-//console.log(myPoops);//ok
+console.log(myPoops);//ok
 
+
+let numbersElement = [];
 
 //Il codice parte al click
 button.addEventListener('click', function () {
@@ -91,7 +93,11 @@ button.addEventListener('click', function () {
         col.innerHTML = `${my_counter}`
         // Verifico se l'incremento è corretto
         //onsole.log(my_counter); //OK
+        numbersElement.push(my_counter)
     }
+
+    //DAY 2 Creo un array che contenga i 100 numeri
+
 
     //Mi serve avere le mie box create in un contenitore
     // Utilizzo un array
@@ -100,16 +106,34 @@ button.addEventListener('click', function () {
     // Verifico di aver preso gli elementi corretti
     //console.log(colsElements); //ok
 
+    //DAY 2
+    //Mi serve un contatore che si incrementa quando non clicco sulla cacca
+    let missedPoop = 0;
+
+
     //Utilizzo addEventListener e toggle in un ciclo for
     for (let i = 0; i < colsElements.length; i++) {
         //Variabile a cui assegno a turno gli elementi del mio array
         const colElement = colsElements[i];
-
+        //console.log(colElement);
         colElement.addEventListener('click', function () {
-            //Quando una cella viene cliccata le assegno una classe che permette di colorarla
-            colElement.classList.toggle('blue')
-            //Visualizzo un messaggio in console con il numero della cella cliccata
-            console.log(i + 1);
+            //DAY 2 
+            /* Quando clicco su una cella:
+             SE il numero della cella è presente tra i numeri generati casualmente nell'array STOPPO IL GIOCO
+             SE NO la coloro di azzurro e continuo il gioco*/
+            if (!myPoops.includes(i + 1)) {
+                //Quando una cella viene cliccata le assegno una classe che permette di colorarla
+                colElement.classList.toggle('blue')
+                //Visualizzo un messaggio in console con il numero della cella cliccata
+                console.log(i + 1);
+                missedPoop ++;
+                console.log("Te la sei scampata per",missedPoop, "volte");
+            } else {
+                colElement.classList.add('poop')
+                console.log("Hai perso");
+            }
+
+
         }
         )
     }
