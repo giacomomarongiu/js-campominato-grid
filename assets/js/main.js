@@ -37,20 +37,31 @@ main.append(button);
 console.log(valueElement);*/
 
 //DAY 2 Creo un array che contiene 16 numeri generati casualmente
-let myPoops = [];
-for (let i = 0; i < 16; i++) {
-    // Creo un nuvo numero
-    const newPoop = Math.floor(Math.random() * 100) + 1;
-    // Verifico che nell'array non ci siano due numeri uguali
-    // SE NON è incluso lo aggiungo
-    if (!myPoops.includes(newPoop)) {
-        myPoops.push(Math.floor(Math.random() * 100) + 1);
-        // SE E' presente decremento l'inidice 
-    } else { i-- }
-};
+let listPoops = createPoops() ;
+
+
+/** Questa funzione quando chiamata restituisce un array numerico di 16 numeri casuali
+ * 
+ * @returns {Array}
+ */
+function createPoops() {
+    let myPoops=[];
+    for (let i = 0; i < 16; i++) {
+        // Creo un nuvo numero
+        const newPoop = Math.floor(Math.random() * 100) + 1;
+        // Verifico che nell'array non ci siano due numeri uguali
+        // SE NON è incluso lo aggiungo
+        if (!myPoops.includes(newPoop)) {
+            myPoops.push(Math.floor(Math.random() * 100) + 1);
+            // SE E' presente decremento l'inidice 
+        } else { i-- }
+    };
+return myPoops;
+}
+
 
 //Verifico che il mio array cotenga 16 numeri casuali diversi
-console.log(myPoops);//ok
+console.log(listPoops);//ok
 
 
 //Il codice parte al click
