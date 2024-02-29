@@ -1,4 +1,6 @@
-console.log("Hello World");
+//1) CREO ELEMENTI NEL DOM
+//2) RACCOLTA DI FUNZIONI
+//3) MAIN CODE
 
 //SEZIONE DEDICATA A CREARE ELEMENTI NELLA DOM
 // Creo una variabile a cui associo la possibilità
@@ -49,10 +51,10 @@ function createPoops(number) {
         const newPoop = Math.floor(Math.random() * poopRange) + 1;
         // Verifico che nell'array non ci siano due numeri uguali
         // SE NON è incluso lo aggiungo
-        if (!myPoops.includes(newPoop)) {
-            myPoops.push(Math.floor(Math.random() * poopRange) + 1);
+        if (!(myPoops.includes(newPoop))) {
+            myPoops.push(newPoop);
             // SE E' presente decremento l'inidice 
-        } else { i-- }
+        } else  i--
     };
     return myPoops;
 }
@@ -137,14 +139,15 @@ function verifiedPoops(index, list) {
         colElement.addEventListener('click', function (e) {
             e.stopPropagation();
         }, true);
-    } else {
+    } else if(listPoops.includes(i + 1) || missedPoop==(listPoops.length-16) ) {
         //SE è PRESENTE: 
         //Pulisco il contenuto e aggiungo una cacca -> Visualizzo il punteggio
         // -> Prendo tutti gli elementi e li rendo non cliccabili
         colElement.classList.add('poop')
         colElement.innerHTML = ``;
         colElement.innerHTML = `&#x1F4A9`
-        console.log("Hai perso totalizzando", missedPoop);
+        console.log("PARTITA FINITA, HAI TOTALIZZATO:", missedPoop);
+        console.log("Clicca sul bottone per riprovare");
         //Scorro l'intero array e non rendo più cliccabile nessuna box
         for (let y = 0; y < colsElements.length; y++) {
             //console.log(colsElements);
@@ -193,17 +196,8 @@ function scrollPoops(list) {
 
 //MAIN CODE
 
-
-
-//Dichiaro una variabile a cui per ora assegno il valore 100
-//ma dopo vorrei avesse il valore value del select 
+//Dichiaro una variabile a cui dopo vorrei avesse il valore value del select 
 let elementValue;
-
-
-// step 2. read the selected level
-// console.log(e.target.level.value);
-//const cellsNumber = e.target.level.value;
-// step 3. use the selected level to generate the magic field
 
 let missedPoop = 0;
 
@@ -222,9 +216,3 @@ document.querySelector('form').addEventListener('submit', function (e) {
     scrollPoops(listPoops);
 
 })
-
-
-/*button.removeEventListener('click','funzioneTest')
-function funzioneTest(){
-    console.log('ciao bello');
-}*/
