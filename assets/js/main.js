@@ -17,8 +17,11 @@ form.append(button);
 
 //BONUS 1 - Genero un secondo Elemento accanto al bottone
 form.append(select);
+
+// Aseegno un nome al select per poi prenderne il valore
 document.querySelector('select').name = 'level';
-console.log(document.querySelector('select'));
+//console.log(document.querySelector('select'));
+
 //BONUS 1 - Aggiungo le opzioni nel select
 select.innerHTML =
     `<option value="100">Easy</option>
@@ -30,20 +33,9 @@ form.append(button);
 
 
 
-//BONUS A CUI STAVO LAVORANDO IERI - LASCIO IN SOSPESO
-/*let valueElement = select.addEventListener('click', function (e) {
-    const selecetedElement = document.querySelector('.my_select')
-    console.log(selecetedElement);
-    console.log(selecetedElement.value);
-    return selecetedElement.value;
-})
-
-console.log(valueElement);*/
 
 
-
-
-//Functions
+//FUNCTIONS
 /** Questa funzione quando chiamata restituisce un array numerico di 16 numeri casuali
  * 
  * @returns {Array}
@@ -63,11 +55,12 @@ function createPoops() {
     return myPoops;
 }
 
-/** Questa funzione mi permette di creare una griglia sul DOM a ogni click
+/** Questa funzione mi permette di creare una griglia delle dimensioni che voglio sul DOM 
  * 
  */
 function createGrill(number) {
     elementValue = number;
+
     //Aggiungo elementi al DOM
     main.append(container);
     container.append(row);
@@ -93,22 +86,22 @@ function createGrill(number) {
 
         // Appendo il primo a row
         row.append(col);
+        // Assegno la classe col OGNI elemento del DOM
+        // A seconda delle dimensioni della griglia assegno una classe specifica
         if (elementValue == 100) {
-            // Assegno la classe col all'elemento del DOM
-            col.classList.add('col','col-10');
+            // Assegno la classe col-10 all'elemento del DOM
+            col.classList.add('col', 'col-10');
         } else if (elementValue == 81) {
-            // Assegno la classe col all'elemento del DOM
-            col.classList.add('col','col-9');
+            // Assegno la classe col-9 all'elemento del DOM
+            col.classList.add('col', 'col-9');
         } else {
-            // Assegno la classe col all'elemento del DOM
-            col.classList.add('col','col-7');
+            // Assegno la classe col-7 all'elemento del DOM
+            col.classList.add('col', 'col-7');
         }
-
 
         //Nello stesso ciclo faccio si' che all'interno degli elementi venga
         // visualizzato sul Dom un numero progressivo da 1 a 100
         col.innerHTML = `${my_counter}`;
-
         // Verifico se l'incremento è corretto
         //onsole.log(my_counter); //OK
     }
@@ -197,7 +190,7 @@ function scrollPoops() {
 //DAY 2 Creo un array che contiene 16 numeri generati casualmente
 let listPoops = createPoops();
 //Verifico che il mio array cotenga 16 numeri casuali diversi
-console.log(listPoops);//ok
+console.log("Questi sono i numeri se vuoi pestare cacca", listPoops);//ok
 
 //Dichiaro una variabile a cui per ora assegno il valore 100
 //ma dopo vorrei avesse il valore value del select 
