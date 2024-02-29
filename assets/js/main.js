@@ -5,18 +5,20 @@ console.log("Hello World");
 // di creare un bottone e gli altri elementi nel DOM (Anche più di uno)
 const button = document.createElement('button');
 const select = document.createElement('select');
+const form = document.createElement('form')
 const main = document.createElement('main');
 const container = document.createElement('div');
 const row = document.createElement('div');
 
 // Uso append per agganciare questo(i) elemento(i) alla DOM
 document.body.append(main);
-main.append(button);
+main.append(form)
+form.append(button);
 
 //BONUS 1 - Genero un secondo Elemento accanto al bottone
-main.append(select);
-select.classList.add('my_select');
-
+form.append(select);
+document.querySelector('select').name = 'level';
+console.log(document.querySelector('select'));
 //BONUS 1 - Aggiungo le opzioni nel select
 select.innerHTML =
     `<option value="100">Easy</option>
@@ -24,7 +26,7 @@ select.innerHTML =
 <option value="49">Hard</option>`;
 
 button.innerHTML = `CLICCA QUI PER GENERARE LA GRIGLIA`;
-main.append(button);
+form.append(button);
 
 
 
@@ -64,7 +66,8 @@ function createPoops() {
 /** Questa funzione mi permette di creare una griglia sul DOM a ogni click
  * 
  */
-function createGrill() {
+function createGrill(number) {
+    elementValue = number;
     //Aggiungo elementi al DOM
     main.append(container);
     container.append(row);
@@ -90,9 +93,17 @@ function createGrill() {
 
         // Appendo il primo a row
         row.append(col);
+        if (elementValue == 100) {
+            // Assegno la classe col all'elemento del DOM
+            col.classList.add('col','col-10');
+        } else if (elementValue == 81) {
+            // Assegno la classe col all'elemento del DOM
+            col.classList.add('col','col-9');
+        } else {
+            // Assegno la classe col all'elemento del DOM
+            col.classList.add('col','col-7');
+        }
 
-        // Assegno la classe col all'elemento del DOM
-        col.classList.add('col');
 
         //Nello stesso ciclo faccio si' che all'interno degli elementi venga
         // visualizzato sul Dom un numero progressivo da 1 a 100
@@ -103,7 +114,11 @@ function createGrill() {
     }
 }
 
-
+/**
+ * Questa funzione mi permette di verificare se la cella cliccata è associata a un numero
+ * della mia lista e in caso colorarla e non renderla più cliccabile
+ * @param {*} index 
+ */
 function verifiedPoops(index) {
     let canYouPlay = true;
     let i = index;
@@ -153,7 +168,7 @@ function verifiedPoops(index) {
 function scrollPoops() {
     //Mi serve avere le mie box create in un contenitore
     // Utilizzo un array
-    let colsElements = document.getElementsByClassName('col')
+    let colsElements = document.getElementsByClassName(['col'])
 
     // Verifico di aver preso gli elementi corretti
     // console.log(colsElements); //ok
@@ -176,6 +191,7 @@ function scrollPoops() {
 
 
 
+
 //MAIN CODE
 
 //DAY 2 Creo un array che contiene 16 numeri generati casualmente
@@ -185,15 +201,22 @@ console.log(listPoops);//ok
 
 //Dichiaro una variabile a cui per ora assegno il valore 100
 //ma dopo vorrei avesse il valore value del select 
-let elementValue = 100;
+let elementValue;
+
+
+// step 2. read the selected level
+// console.log(e.target.level.value);
+//const cellsNumber = e.target.level.value;
+// step 3. use the selected level to generate the magic field
 
 let missedPoop = 0;
-let letsClick;
 
 //Il codice parte al click
-button.addEventListener('click', function () {
-
-    createGrill();
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    elementValue = e.target.level.value;
+    console.log(elementValue);
+    createGrill(elementValue);
     scrollPoops();
 
 })

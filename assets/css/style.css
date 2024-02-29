@@ -17,12 +17,27 @@ main {
     flex-wrap: wrap;
 }
 
-.col {
+.col-10 {
     width: 10%;
     aspect-ratio: 1/1;
     text-align: center;
     background: green;
 }
+
+.col-9 {
+    width: calc(100%/9);
+    aspect-ratio: 1/1;
+    text-align: center;
+    background: green;
+}
+
+.col-7 {
+    width: calc(100%/7);
+    aspect-ratio: 1/1;
+    text-align: center;
+    background: green;
+}
+
 
 .blue {
     background-color: blue;
